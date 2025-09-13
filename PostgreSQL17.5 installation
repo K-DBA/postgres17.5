@@ -1,0 +1,142 @@
+wget https://ftp.postgresql.org/pub/source/v17.5/postgresql-17.5.tar.gz
+tar xzf postgresql-17.5.tar.gz
+
+sudo mkdir -p /usr/lib/postgresql/17
+sudo mkdir -p /var/lib/postgresql/17/main
+sudo mkdir -p /etc/postgresql/17/main
+
+ls /usr/lib/postgresql/17
+ls /var/lib/postgresql/17/main
+ls /etc/postgresql/17/main
+
+sudo apt update
+sudo apt install -y \
+  gcc \
+  zlib1g-dev \
+  libreadline-dev \
+  libicu-dev \
+  make \
+  flex \
+  libxslt1-dev \
+  libssl-dev \
+  build-essential
+
+sudo apt install postgresql-client-common
+
+sudo apt install libicu-dev
+sudo apt install bison flex build-essential libreadline-dev zlib1g-dev
+
+sudo adduser --system --home /var/lib/postgresql --no-create-home --group postgres
+getent passwd postgres
+sudo chsh -s /bin/bash postgres
+ 
+id postgres
+sudo chown -R postgres:postgres /var/lib/postgresql/17
+sudo chown -R postgres:postgres /etc/postgresql/17
+
+
+./configure --prefix=/usr/lib/postgresql/17 --without-icu
+sudo make install
+
+
+sudo -u postgres /usr/lib/postgresql/17/bin/initdb -D /var/lib/postgresql/17/main
+
+sudo -u postgres /usr/lib/postgresql/17/bin/pg_ctl -D /var/lib/postgresql/17/main -l /var/lib/postgresql/17/main/logfile start
+------------------------------------------------------------------------------------------------------------------------------------------
+
+postgres@kedar-VirtualBox:~/17/main$ history
+    1  psql
+    2  cd /var/lib/postgresql
+    3  cd /var/lib/postgresql/
+    4  ls
+    5  ps -ef | grep postgres
+    6  cd /var/lib/postgresql/17/main
+    7  ls -ltr
+    8  history
+postgres@kedar-VirtualBox:~/17/main$
+logout
+kedar@kedar-VirtualBox:~$ history
+    1  df -h
+    2  wget https://ftp.postgresql.org/pub/source/v17.5/postgresql-17.5.tar.gz
+    3  tar xzf postgresql-17.5.tar.gz
+    4  sudo mkdir -p /usr/lib/postgresql/17
+    5  sudo mkdir -p /var/lib/postgresql/17/main
+    6  sudo mkdir -p /etc/postgresql/17/main
+    7  ls /usr/lib/postgresql/17
+    8  ls /var/lib/postgresql/17/main
+    9  ls /etc/postgresql/17/main
+   10  ll /usr/lib/postgresql/17
+   11  ll /var/lib/postgresql/17/main
+   12  sudo apt update
+   13  sudo apt install -y   gcc   zlib1g-dev   libreadline-dev   libicu-dev   make   flex   libxslt1-dev   libssl-dev   build-essential
+   14  sudo apt install libicu-dev
+   15  sudo apt install bison flex build-essential libreadline-dev zlib1g-dev
+   16  cd postgresql-17.5/
+   17  ls -ltr
+   18  sudo adduser --system --home /var/lib/postgresql --no-create-home --group postgres
+   19  id postgres
+   20  sudo chown -R postgres:postgres /var/lib/postgresql/17
+   21  sudo chown -R postgres:postgres /etc/postgresql/17
+   22  cd /var/lib/postgresql/17
+   23  ls -ltr
+   24  cd /etc/postgresql/17
+   25  ls -ltr
+   26  cd
+   27  cd  postgresql-17.5/
+   28  ./configure --prefix=/usr/lib/postgresql/17 --without-icu
+   29  sudo make install
+   30  sudo -u postgres /usr/lib/postgresql/17/bin/initdb -D /var/lib/postgresql/17/main
+   31  ps -ef | grep postgres
+   32  sudo -u postgres /usr/lib/postgresql/17/bin/pg_ctl -D /var/lib/postgresql/17/main -l /var/lib/postgresql/17/main/logfile start
+   33  ps -ef | grep postgres
+   34  sudo -u postgres /usr/lib/postgresql/17/bin/psql -c "SHOW config_file;"
+   35  history
+   36  psql
+   37  sudo -u postgres /usr/lib/postgresql/17/bin/psql
+   38  cd /var/lib/postgresql/17/main
+   39  cd /var/lib/postgresql/17/
+   40  ls -ltr
+   41  ps -ef | grep postgres
+   42  cd /usr/lib/postgresql/17/bin/postgres
+   43  cd /usr/lib/postgresql/17/bin/
+   44  ls -ltr
+   45  su - postgres
+   46  su - iu postgres
+   47  su -iu postgres
+   48  sudo -u postgres
+   49  su postgres
+   50  passwd postgres
+   51  cd
+   52  passwd postgres
+   53  sudo postgres
+   54  sudo passwd postgres
+   55  id postgres
+   56  su - postgres
+   57  sudo postgres
+   58  sudo -postgres
+   59  sudo -u postgres
+   60  grep postgres /etc/passwd
+   61  sudo -u postgres
+   62  sudo -u postgres bash
+   63  sudo -u postgres psql
+   64  sudo -u postgres bash
+   65  sudo apt install postgresql-client-common
+   66  export PATH=/usr/lib/postgresql/17/bin:$PATH
+   67  sudo -u postgres
+   68  sudo -u postgres /usr/lib/postgresql/17/bin/psql
+   69  sudo -u postgres bash
+   70  vi ~/.bashrc
+   71  which psql
+   72  psql --version
+   73  su - postgres
+   74  sudo -u postgres bash
+   75  getent passwd postgres
+   76  sudo chsh -s /bin/bash postgres
+   77  su - postgres
+   78  history
+kedar@kedar-VirtualBox:~$
+
+
+
+
+
