@@ -140,3 +140,32 @@ kedar@kedar-VirtualBox:~$
 
 
 
+sudo vi /etc/systemd/system/postgresql-17.service
+
+[Unit]
+Description=PostgreSQL 17 database server
+After=network.target
+
+[Service]
+Type=forking
+User=postgres
+Group=postgres
+
+# Adjust paths to your installation
+ExecStart=/usr/lib/postgresql/17/bin/pg_ctl start -D /var/lib/postgresql/17/main -l /var/lib/postgresql/17/main/logfile
+ExecStop=/usr/lib/postgresql/17/bin/pg_ctl stop -D /var/lib/postgresql/17/main
+ExecReload=/usr/lib/postgresql/17/bin/pg_ctl reload -D /var/lib/postgresql/17/main
+
+# Give it time to start
+TimeoutSec=300
+
+[Install]
+WantedBy=multi-user.target
+
+
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl enable postgresql-17
+sudo systemctl start postgresql-17
+
+sudo systemctl status postgresql-17
